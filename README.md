@@ -30,7 +30,7 @@ func main() {
 	p8 := ""
 	p8Bytes := []byte(p8)
 
-	app, err := sugoimobilereport.NewAppStoreConnectaAPIJwt(issUserID, keyID, p8Bytes)
+	app, err := sugoimobilereport.NewAppStoreConnectAPIJwt(issUserID, keyID, p8Bytes)
 	if err != nil {
 		panic(err)
 	}

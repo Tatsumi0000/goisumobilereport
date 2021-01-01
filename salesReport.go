@@ -40,6 +40,12 @@ type SalesReport struct {
 	OrderType             string                `csv:"Order Type"`
 }
 
+// // DownloadDetails DLした機種名と回数
+// type DownloadDetails struct {
+// 	Device string
+// 	Count  int
+// }
+
 // ParseTsvFile TsvFileをパースしてSalesReportのSlicesポインタを返す
 func ParseTsvFile(filePath string) ([]*SalesReport, error) {
 	salesReports := []*SalesReport{}
@@ -58,4 +64,36 @@ func ParseTsvFile(filePath string) ([]*SalesReport, error) {
 		return nil, err
 	}
 	return salesReports, nil
+}
+
+// DailyNewDownloadCount DAILYの新規DLした機種と数のmapポインタと、合計新規DL数を返す
+func DailyNewDownloadCount(salesReports []*SalesReport, sku string) (*map[string]int, int) {
+	var sumDownloadCount int
+	downloadDetails := map[string]int{}
+
+	for _, salesReport := range salesReports {
+		if salesReport.SKU == sku {
+			if salesReport.ProductTypeIdentifier == FreeOrPaidiPhoneAndiPod || salesReport.ProductTypeIdentifier == FreeOrPaidAppUniversal || salesReport.ProductTypeIdentifier == FreeOrPaidAppiPad {
+				sumDownloadCount += salesReport.Units
+				downloadDetails[salesReport.Device] += salesReport.Units
+			}
+		}
+	}
+	return &downloadDetails, sumDownloadCount
+}
+
+// DailyReDownloadCount DAILYの再DLした機種と数のmapポインタと、合計再DL数を返す
+func DailyReDownloadCount(salesReports []*SalesReport, sku string) (*map[string]int, int) {
+	var sumDownloadCount int
+	downloadDetails := map[string]int{}
+
+	for _, salesReport := range salesReports {
+		if salesReport.SKU == sku {
+			if salesReport.ProductTypeIdentifier == RedownloadOfUniversalApp || salesReport.ProductTypeIdentifier == RedownloadOfiPadOnlyApp || salesReport.ProductTypeIdentifier == RedownloadOfiPhoneOnlyOriOSAndtvOSApp {
+				sumDownloadCount += salesReport.Units
+				downloadDetails[salesReport.Device] += salesReport.Units
+			}
+		}
+	}
+	return &downloadDetails, sumDownloadCount
 }

@@ -40,12 +40,6 @@ type SalesReport struct {
 	OrderType             string                `csv:"Order Type"`
 }
 
-// // DownloadDetails DLした機種名と回数
-// type DownloadDetails struct {
-// 	Device string
-// 	Count  int
-// }
-
 // ParseTsvFile TsvFileをパースしてSalesReportのSlicesポインタを返す
 func ParseTsvFile(filePath string) ([]*SalesReport, error) {
 	salesReports := []*SalesReport{}

@@ -60,34 +60,41 @@ func ParseTsvFile(filePath string) ([]*SalesReport, error) {
 	return salesReports, nil
 }
 
-// DailyNewDownloadCount DAILYの新規DLした機種と数のmapポインタと、合計新規DL数を返す
-func DailyNewDownloadCount(salesReports []*SalesReport, sku string) (*map[string]int, int) {
+// DailyNewDownloadCount DAILYの新規DLした国コードと機種、数のmapポインタと、合計新規DL数を返す
+func DailyNewDownloadCount(salesReports []*SalesReport, sku string) (*map[string]map[string]int, int) {
 	var sumDownloadCount int
-	downloadDetails := map[string]int{}
+	downloadDetails := map[string]map[string]int{}
 
 	for _, salesReport := range salesReports {
 		if salesReport.SKU == sku {
 			if salesReport.ProductTypeIdentifier == FreeOrPaidiPhoneAndiPod || salesReport.ProductTypeIdentifier == FreeOrPaidAppUniversal || salesReport.ProductTypeIdentifier == FreeOrPaidAppiPad {
+				if downloadDetails[salesReport.CountryCode] == nil {
+					downloadDetails[salesReport.CountryCode] =  map[string]int{}
+				}
 				sumDownloadCount += salesReport.Units
-				downloadDetails[salesReport.Device] += salesReport.Units
+				downloadDetails[salesReport.CountryCode][salesReport.Device] += salesReport.Units
 			}
 		}
 	}
 	return &downloadDetails, sumDownloadCount
 }
 
-// DailyReDownloadCount DAILYの再DLした機種と数のmapポインタと、合計再DL数を返す
-func DailyReDownloadCount(salesReports []*SalesReport, sku string) (*map[string]int, int) {
+// DailyReDownloadCount DAILYの再DLした国コードと機種、数のmapポインタと、合計再DL数を返す
+func DailyReDownloadCount(salesReports []*SalesReport, sku string) (*map[string]map[string]int, int) {
 	var sumDownloadCount int
-	downloadDetails := map[string]int{}
+	downloadDetails := map[string]map[string]int{}
 
 	for _, salesReport := range salesReports {
 		if salesReport.SKU == sku {
 			if salesReport.ProductTypeIdentifier == RedownloadOfUniversalApp || salesReport.ProductTypeIdentifier == RedownloadOfiPadOnlyApp || salesReport.ProductTypeIdentifier == RedownloadOfiPhoneOnlyOriOSAndtvOSApp {
+				if downloadDetails[salesReport.CountryCode] == nil {
+					downloadDetails[salesReport.CountryCode] =  map[string]int{}
+				}
 				sumDownloadCount += salesReport.Units
-				downloadDetails[salesReport.Device] += salesReport.Units
+				downloadDetails[salesReport.CountryCode][salesReport.Device] += salesReport.Units
 			}
 		}
 	}
 	return &downloadDetails, sumDownloadCount
 }
+

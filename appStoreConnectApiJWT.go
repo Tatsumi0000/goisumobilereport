@@ -21,7 +21,7 @@ type AppStoreConnectAPIJwt struct {
 	JwtToken   string // JwtToken
 }
 
-func NewAppStoreConnectaAPIJwt(issUserID, keyID string, p8 []byte) (*AppStoreConnectAPIJwt, error) {
+func NewAppStoreConnectAPIJwt(issUserID, keyID string, p8 []byte) (*AppStoreConnectAPIJwt, error) {
 	appStoreConnectAPIJwt := AppStoreConnectAPIJwt{}
 	appStoreConnectAPIJwt.IssUserID = issUserID
 	appStoreConnectAPIJwt.KeyID = keyID

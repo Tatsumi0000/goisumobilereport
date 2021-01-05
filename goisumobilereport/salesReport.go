@@ -60,44 +60,6 @@ func ParseTsvFile(filePath string) ([]*SalesReport, error) {
 	return salesReports, nil
 }
 
-// NewDownloadCount 新規DLした国コードと機種、数のmapポインタと、合計新規DL数を返す
-func NewDownloadCount(salesReports []*SalesReport, sku string) (*map[string]map[string]int, int) {
-	var sumDownloadCount int
-	downloadDetails := map[string]map[string]int{}
-
-	for _, salesReport := range salesReports {
-		if salesReport.SKU == sku {
-			if salesReport.ProductTypeIdentifier == FreeOrPaidiPhoneAndiPod || salesReport.ProductTypeIdentifier == FreeOrPaidAppUniversal || salesReport.ProductTypeIdentifier == FreeOrPaidAppiPad {
-				if downloadDetails[salesReport.CountryCode] == nil {
-					downloadDetails[salesReport.CountryCode] = map[string]int{}
-				}
-				sumDownloadCount += salesReport.Units
-				downloadDetails[salesReport.CountryCode][salesReport.Device] += salesReport.Units
-			}
-		}
-	}
-	return &downloadDetails, sumDownloadCount
-}
-
-// ReDownloadCount 再DLした国コードと機種、数のmapポインタと、合計再DL数を返す
-func ReDownloadCount(salesReports []*SalesReport, sku string) (*map[string]map[string]int, int) {
-	var sumDownloadCount int
-	downloadDetails := map[string]map[string]int{}
-
-	for _, salesReport := range salesReports {
-		if salesReport.SKU == sku {
-			if salesReport.ProductTypeIdentifier == RedownloadOfUniversalApp || salesReport.ProductTypeIdentifier == RedownloadOfiPadOnlyApp || salesReport.ProductTypeIdentifier == RedownloadOfiPhoneOnlyOriOSAndtvOSApp {
-				if downloadDetails[salesReport.CountryCode] == nil {
-					downloadDetails[salesReport.CountryCode] = map[string]int{}
-				}
-				sumDownloadCount += salesReport.Units
-				downloadDetails[salesReport.CountryCode][salesReport.Device] += salesReport.Units
-			}
-		}
-	}
-	return &downloadDetails, sumDownloadCount
-}
-
 // NumberOfNewDownloadsByCountry 新規DLした国コードと機種、数のmapポインタと、合計新規DL数を返す
 func NumberOfNewDownloadsByCountry(salesReports []*SalesReport, sku string) (*map[string]map[string]int, int) {
 	var sumDownloadCount int

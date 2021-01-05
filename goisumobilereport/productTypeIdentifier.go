@@ -1,4 +1,4 @@
-package sugoimobilereport
+package goisumobilereport
 
 // https://developer.apple.com/forums/thread/24203
 // type ProductTypeIdentifier string

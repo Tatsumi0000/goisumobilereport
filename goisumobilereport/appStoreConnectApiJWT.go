@@ -1,4 +1,4 @@
-package sugoimobilereport
+package goisumobilereport
 
 import (
 	"compress/gzip"

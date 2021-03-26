@@ -50,7 +50,7 @@ func NewAppStoreConnectAPIJwt(issUserID, keyID string, p8 []byte) (*AppStoreConn
 	return &appStoreConnectAPIJwt, nil
 }
 
-func (appStoreConnectAPIJwt *AppStoreConnectAPIJwt) StoreConnectAPIRquest(reportType, reportSubType, frequency, version, vendorNumber, reportDate, filePath string) error {
+func (appStoreConnectAPIJwt *AppStoreConnectAPIJwt) StoreConnectAPIRequest(reportType, reportSubType, frequency, version, vendorNumber, reportDate, filePath string) error {
 	const url = "https://api.appstoreconnect.apple.com/v1/salesReports"
 	client := &http.Client{}
 	request, _ := http.NewRequest("GET", url, nil)

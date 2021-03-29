@@ -114,7 +114,7 @@ func NumberOfNewDownloads(salesReports []*SalesReport, sku string) (*map[string]
 	return &downloadDetails, sumDownloadCount
 }
 
-// NumberOfReDownloads 新規DLした機種と回数のmapポインタと、合計新規DL数を返す
+// NumberOfReDownloads 再DLした機種と回数のmapポインタと、合計再DL数を返す
 func NumberOfReDownloads(salesReports []*SalesReport, sku string) (*map[string]int, int) {
 	var sumDownloadCount int
 	downloadDetails := map[string]int{}

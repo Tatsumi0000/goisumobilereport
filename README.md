@@ -50,5 +50,20 @@ func main() {
 }
 ```
 
+### function
+- NumberOfNewDownloadsByCountry
+  - 新規DLした国コードと機種、数のmapポインタと、合計新規DL数を返す
+- NumberOfReDownloadsByCountry
+  - 再DLした国コードと機種、数のmapポインタと、合計再DL数を返す
+- NumberOfNewDownloads
+  - 新規DLした機種と回数のmapポインタと、合計新規DL数を返す
+- NumberOfReDownloads
+  - 新規DLした機種と回数のmapポインタと、合計新規DL数を返す
+
 ### Blog
 - [App Store Connect APIから新規DL数を取得](https://tech.pepabo.com/2021/03/29/app-store-connect/)
+
+### refs
+- [iTunes Connectの売上とトレンドを自動取得する](https://qiita.com/yosan/items/b820b7b59d33259a7e90#%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E8%A6%8B%E6%96%B9)
+- [New Product Type Identifier - 3F? in App Sales Report](https://developer.apple.com/forums/thread/24203)
+- [vickxxx/appstore](https://github.com/vickxxx/appstore)

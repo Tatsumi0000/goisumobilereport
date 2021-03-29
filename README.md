@@ -58,7 +58,7 @@ func main() {
 - NumberOfNewDownloads
   - 新規DLした機種と回数のmapポインタと、合計新規DL数を返す
 - NumberOfReDownloads
-  - 新規DLした機種と回数のmapポインタと、合計新規DL数を返す
+  - 再DLした機種と回数のmapポインタと、合計再DL数を返す
 
 ### Blog
 - [App Store Connect APIから新規DL数を取得](https://tech.pepabo.com/2021/03/29/app-store-connect/)

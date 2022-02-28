@@ -10,7 +10,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v4"
 )
 
 // AppStoreConnectAPIJwt 認証に必要な構造体

@@ -1,8 +1,8 @@
 module github.com/Tatsumi0000/goisumobilereport
 
-go 1.15
+go 1.17
 
 require (
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
-	github.com/gocarina/gocsv v0.0.0-20201208093247-67c824bc04d4 // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/gocarina/gocsv v0.0.0-20211203214250-4735fba0c1d9
 )
